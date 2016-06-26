@@ -1,6 +1,6 @@
 /* modules.less */
 
-// The home for small tweaks to modules that don't require
+// The home for small tweaks to modules that do not require
 // changes drastic enough to pull in the full module css
 // and replace it completely
 // Plus some misc. odds and ends
@@ -11,63 +11,70 @@ select {
 
 // Forum module
 
-.path-mod-forum .forumsearch {
-    input,
-    .helptooltip {
-        margin: 0 3px;
-    }
-}
-
-.path-mod-forum .forumheaderlist,
-.path-mod-forum .forumheaderlist td {
-    border: none;
-}
-
 .path-mod-forum {
+    .forumsearch {
+        input,
+        .helptooltip {
+            margin: 0 3px;
+        }
+    }
+    .forumheaderlist,
+    .forumheaderlist td {
+        border: none;
+    }
     .forumheaderlist {
-        thead .header,
-        tbody .discussion td {
-            white-space: normal;
-            vertical-align: top;
-            padding-left: 0.5em;
-            padding-right: 0.5em;
-        }
-
-        thead .header {
-            white-space: normal;
-            vertical-align: top;
-        }
-
-        thead .header.replies {
-            text-align: center;
-        }
-        thead .header.lastpost {
-            text-align: right;
-        }
-        thead .header th,
-        tbody .discussion td{
-            &.discussionsubscription {
-                width: 16px;
+        thead {
+            .header {
+                white-space: normal;
+                vertical-align: top;
                 padding-left: 0.5em;
                 padding-right: 0.5em;
+                &.replies {
+                    text-align: center;
+                }
+                &.lastpost {
+                    text-align: right;
+                }
+                th {
+                    &.discussionsubscription {
+                        width: 16px;
+                        padding-left: 0.5em;
+                        padding-right: 0.5em;
+                    }
+                }
             }
         }
-        .discussion {
-            .author, .replies, .lastpost {
-                white-space: normal;
-            }
-            .discussionsubscription,
-            .replies {
-                text-align: center;
-            }
-            .topic,
-            .discussionsubscription,
-            .topic.starter,
-            .picture,
-            .author,
-            .replies,
-            .lastpost {
-                vertical-align: top;
+        tbody {
+            .discussion {
+                td {
+                    vertical-align: top;
+                    padding-left: 0.5em;
+                    padding-right: 0.5em;
+                    &.discussionsubscription {
+                        width: 16px;
+                        padding-left: 0.5em;
+                        padding-right: 0.5em;
+                    }
+                }
+                td,
+                .author,
+                .replies,
+                .lastpost {
+                    white-space: normal;
+                }
+                .discussionsubscription,
+                .replies {
+                    text-align: center;
+                }
+                .topic,
+                .discussionsubscription,
+                .topic.starter,
+                .picture,
+                .author,
+                .replies,
+                .lastpost {
+                    vertical-align: top;
+                }
             }
         }
     }
@@ -82,55 +89,62 @@ select {
     .picture img {
         margin: 3px;
         &.userpicture {
-            margin-left: 3px;
             margin-right: 10px;
+            margin-left: 3px;
         }
     }
     .content {
-        .posting.fullpost {
-            margin-top: 8px;
+        .posting {
+            &.fullpost {
+                margin-top: 8px;
+            }
         }
     }
     .row {
         .topic,
         .content-mask,
         .options {
+            margin-right: 0;
             margin-left: 48px;
         }
         &.side {
             clear: both;
         }
     }
-}
-
-.dir-rtl .forumpost {
-    .picture img {
-        &.userpicture {
-            margin-left: 10px;
-            margin-right: 3px;
-        }
-    }
     .row {
-        .topic,
-        .content-mask,
-        .options {
+        .left {
+            width: 48px;
+        }
+    }
+    .options {
+        .commands {
             margin-left: 0;
-            margin-right: 48px;
+        }
+    }
+    .subject {
+        font-weight: bold;
+    }
+}
+
+.dir-rtl {
+    .forumpost {
+        .picture img {
+            &.userpicture {
+                margin-right: 3px;
+                margin-left: 10px;
+            }
+        }
+        .row {
+            .topic,
+            .content-mask,
+            .options {
+                margin-right: 48px;
+                margin-left: 0;
+            }
         }
     }
 }
 
-.forumpost .row .left {
-    width: 48px;
-}
-
-.forumpost .options .commands {
-    margin-left: 0;
-}
-
-.forumpost .subject {
-    font-weight: bold;
-}
 
 // Override hardcoded forum modules styling
 .forumsearch input[type=text] {
@@ -612,27 +626,46 @@ div#dock {
     }
 }
 
-.dir-ltr {
-    .usermenu {
-        float: right;
-        > .moodle-actionmenu {
-            > .menu {
-                &:before {
-                    right: 9px;
-                }
-                &:after {
-                    right: 10px;
-                }
+.usermenu {
+    float: right;
+    > .moodle-actionmenu {
+        > .menu {
+            &:before {
+                right: 9px;
             }
-            > .menubar li a {
-                text-align: right;
+            &:after {
+                right: 10px;
             }
         }
+        > .menubar li a {
+            text-align: right;
+        }
     }
-    &.userloggedinas .usermenu .userbutton .avatars {
-        .avatar {
-            &.current {
-                left: 16px;
+}
+
+.userloggedinas {
+    .usermenu {
+        .userbutton {
+            .avatars {
+                .avatar {
+                    &.current {
+                        position: relative;
+                        top: 4px;
+                        left: 4px;
+                        width: 20px;
+                        height: 20px;
+                        margin-top: 11px;
+                        margin-bottom: -34px;
+                        border: 1px solid #fff;
+                        border-radius: 50%;
+                        box-shadow: -2px -2px 16px rgba(0,0,0,0.25);
+                    }
+                    img {
+                        width: inherit;
+                        height: inherit;
+                    }
+                    overflow: hidden;
+                }
             }
         }
     }
@@ -656,117 +689,104 @@ div#dock {
             }
         }
     }
-    &.userloggedinas .usermenu .userbutton .avatars {
-        .avatar {
-            &.current {
-                left: -14px;
+    &.userloggedinas {
+        .usermenu {
+            .userbutton {
+                .avatars {
+                    .avatar {
+                        &.current {
+                            left: 0;
+                            right: 4px;
+                        }
+                    }
+                }
             }
         }
-    }
-}
-
-
-.userloggedinas .usermenu .userbutton .avatars {
-    .avatar {
-        &.current {
-            position: relative;
-            top: 4px;
-            left: 4px;
-            width: 20px;
-            height: 20px;
-            margin-top: 11px;
-            margin-bottom: -34px;
-            border: 1px solid #fff;
-            border-radius: 50%;
-            box-shadow: -2px -2px 16px rgba(0,0,0,0.25);
-        }
-        img {
-            width: inherit;
-            height: inherit;
-        }
-        overflow: hidden;
     }
 }
 
 // Quiz module
 
 // Question navigation block.
-.path-mod-quiz #mod_quiz_navblock {
-    .qnbutton {
-        text-decoration: none;
-        font-size: 14px;
-        line-height: 20px;
-        font-weight: normal;
-        background-color: @white;
-        background-image: none;
-        height: 40px;
-        width: 30px;
-        border-radius: 3px;
-        border: 0;
-        overflow: visible;
-        margin: 0 6px 6px 0;
-    }
-    span.qnbutton {
-        cursor: default;
-        background-color: @inputDisabledBackground;
-        color: @gray;
-    }
-    a.qnbutton:hover,
-    a.qnbutton:active,
-    a.qnbutton:focus {
-        text-decoration: underline;
-    }
-
-    .qnbutton .thispageholder {
-        border: 1px solid;
-        border-radius: 3px;
-        z-index: 1;
-    }
-    .qnbutton.thispage .thispageholder {
-        border-width: 3px;
-    }
-    .allquestionsononepage .qnbutton.thispage .thispageholder {
-        border-width: 1px;
-    }
-
-    .qnbutton.flagged .thispageholder {
-        background: transparent url([[pix:theme|mod/quiz/flag-on]]) 15px 0px no-repeat;
-    }
-
-    .qnbutton .trafficlight {
-        border: 0;
-        background: @white none center/10px no-repeat scroll;
-        height: 20px;
-        margin-top: 20px;
-        border-radius: 0 0 3px 3px;
-    }
-
-    .qnbutton.notyetanswered .trafficlight,
-    .qnbutton.invalidanswer .trafficlight {
-        background-color: @white;
-    }
-    .qnbutton.invalidanswer .trafficlight {
-        background-image: url([[pix:theme|mod/quiz/warningtriangle]]);
-    }
-    .qnbutton.correct .trafficlight {
-        background-image: url([[pix:theme|mod/quiz/checkmark]]);
-        background-color: @successText;
-    }
-    .qnbutton.blocked .trafficlight {
-        background-image: url([[pix:core|t/locked]]);
-        background-color: @inputDisabledBackground;
-    }
-    .qnbutton.notanswered .trafficlight,
-    .qnbutton.incorrect .trafficlight {
-        background-color: @errorText;
-    }
-    .qnbutton.partiallycorrect .trafficlight {
-        background-image: url([[pix:theme|mod/quiz/whitecircle]]);
-        background-color: @orange;
-    }
-    .qnbutton.complete .trafficlight,
-    .qnbutton.answersaved .trafficlight,
-    .qnbutton.requiresgrading .trafficlight {
-        background-color: @grayLight;
+.path-mod-quiz {
+    #mod_quiz_navblock {
+        .allquestionsononepage {
+            .qnbutton {
+                &.thispage {
+                    .thispageholder {
+                        border-width: 1px;
+                    }
+                }
+                text-decoration: none;
+                font-size: 14px;
+                line-height: 20px;
+                font-weight: normal;
+                background-color: @white;
+                background-image: none;
+                height: 40px;
+                width: 30px;
+                border-radius: 3px;
+                border: 0;
+                overflow: visible;
+                margin: 0 6px 6px 0;
+                .thispageholder {
+                    border: 1px solid;
+                    border-radius: 3px;
+                    z-index: 1;
+                    &.thispage {
+                        .thispageholder {
+                        border-width: 3px;
+                    }
+                }
+                &.flagged .thispageholder {
+                    background: transparent url([[pix:theme|mod/quiz/flag-on]]) 15px 0px no-repeat;
+                }
+                .trafficlight {
+                    border: 0;
+                    background: @white none center/10px no-repeat scroll;
+                    height: 20px;
+                    margin-top: 20px;
+                    border-radius: 0 0 3px 3px;
+                }
+                &.notyetanswered,
+                &.invalidanswer {
+                    .trafficlight {
+                        background-color: @white;
+                    }
+                }
+                &.invalidanswer {
+                    .trafficlight {
+                        background-image: url([[pix:theme|mod/quiz/warningtriangle]]);
+                    }
+                }
+                &.correct .trafficlight {
+                    background-image: url([[pix:theme|mod/quiz/checkmark]]);
+                    background-color: @successText;
+                }
+                &.blocked .trafficlight {
+                    background-image: url([[pix:core|t/locked]]);
+                    background-color: @inputDisabledBackground;
+                }
+                &.notanswered,
+                &.incorrect {
+                    .trafficlight {
+                        background-color: @errorText;
+                    }
+                }
+                &.partiallycorrect {
+                    .trafficlight {
+                        background-image: url([[pix:theme|mod/quiz/whitecircle]]);
+                        background-color: @orange;
+                    }
+                }
+                &.complete,
+                &.answersaved,
+                &.requiresgrading {
+                    .trafficlight {
+                        background-color: @grayLight;
+                    }
+                }
+            }
+        }
     }
 }
